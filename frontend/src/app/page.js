@@ -359,7 +359,7 @@ export default function Dashboard() {
             </svg>
             <div>
               <p className="text-amber-800 dark:text-amber-200 font-medium">Einige Instanzen sind gesperrt</p>
-              <p className="text-amber-700 dark:text-amber-300 text-sm mt-1">Bitte melden Sie sich erneut an, um den Zugriff wiederherzustellen.</p>
+              <p className="text-amber-700 dark:text-amber-300 text-sm mt-1">Bitte melde dich erneut an, um den Zugriff wiederherzustellen.</p>
             </div>
           </div>
           <button
@@ -506,7 +506,7 @@ export default function Dashboard() {
             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clipRule="evenodd" />
           </svg>
           <p className="text-emerald-800 dark:text-emerald-300 text-sm font-medium">
-            Sie können noch {maxInstances - instances.length} weitere Instanz(en) hinzufügen.
+            Du kannst noch {maxInstances - instances.length} weitere Instanz(en) hinzufügen.
           </p>
         </div>
       )}

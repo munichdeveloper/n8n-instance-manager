@@ -40,7 +40,7 @@ function LockedState() {
       </div>
       <h3 className="text-lg font-medium text-gray-900 dark:text-zinc-100 mb-2">Instanz ist gesperrt</h3>
       <p className="text-gray-500 dark:text-zinc-400 max-w-md mx-auto">
-        Daten können nicht angezeigt werden, da der API Key nicht entschlüsselt werden konnte. Bitte melden Sie sich erneut an.
+        Daten können nicht angezeigt werden, da der API Key nicht entschlüsselt werden konnte. Bitte melde dich erneut an.
       </p>
     </div>
   );
@@ -256,7 +256,7 @@ export default function InstanceDetailPage({ params }) {
           <div>
             <p className="text-amber-800 dark:text-amber-200 font-medium">Instanz ist gesperrt</p>
             <p className="text-amber-700 dark:text-amber-300 text-sm">
-              Der API Key konnte nicht entschlüsselt werden. Bitte melden Sie sich erneut an, um den Zugriff wiederherzustellen.
+              Der API Key konnte nicht entschlüsselt werden. Bitte melde dich erneut an, um den Zugriff wiederherzustellen.
             </p>
           </div>
         </div>

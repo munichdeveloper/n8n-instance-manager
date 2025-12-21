@@ -140,14 +140,16 @@ export default function BackupSettingsPage() {
             Automatische Backups
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Sichern Sie Ihre Workflows automatisch auf Google Drive. Diese Funktion ist exklusiv in der Business Edition verfügbar.
+            Sichere deine Workflows automatisch auf Google Drive. Diese Funktion ist exklusiv in der Business Edition verfügbar.
           </p>
-          <Link
-            href="/premium"
+          <a
+            href="https://n8n-instance-manager.de/signup"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-full transition-colors shadow-lg"
           >
             Jetzt upgraden
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -162,7 +164,7 @@ export default function BackupSettingsPage() {
         </Link>
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Backup-Einstellungen</h2>
         <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Konfigurieren Sie automatische Backups Ihrer Workflows auf Google Drive
+          Konfiguriere automatische Backups deiner Workflows auf Google Drive
         </p>
       </div>
 
