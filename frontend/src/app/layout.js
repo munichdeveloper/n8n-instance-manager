@@ -107,16 +107,12 @@ function Footer() {
     if (isAuthenticated && isPremium && typeof window !== 'undefined') {
       // Kurze Verzögerung um sicherzustellen, dass das Token verfügbar ist
       const timer = setTimeout(() => {
-        const token = localStorage.getItem('token');
-        console.log('Footer: Fetching version, token present:', !!token);
-
         getVersion()
           .then((info) => {
-            console.log('Footer: Version fetched successfully:', info.version);
             setVersion(info.version);
           })
           .catch((err) => {
-            console.error('Footer: Failed to fetch version', err);
+            console.error('Failed to fetch version', err);
           });
       }, 100);
 
