@@ -219,6 +219,33 @@ npm run dev
 mvn test
 ```
 
+### 🔒 Git Pre-Push Hook
+
+Das Projekt enthält einen **automatischen Pre-Push Hook**, der Tests vor jedem Push ausführt:
+
+- ✅ **Automatische Validierung**: Tests werden vor jedem `git push` ausgeführt
+- ✅ **Push-Schutz**: Push wird nur bei erfolgreichen Tests zugelassen
+- ✅ **Bereits installiert**: Hook ist unter `.git/hooks/pre-push` aktiv
+
+**Hook testen:**
+```bash
+# Windows PowerShell (Empfohlen)
+.\test-pre-push-hook.ps1
+
+# Windows CMD
+test-pre-push-hook.bat
+
+# Linux/Mac
+./test-pre-push-hook.sh
+```
+
+**Hook temporär überspringen** (nur in Notfällen):
+```bash
+git push --no-verify
+```
+
+📖 **Detaillierte Hook-Dokumentation:** [GIT_HOOKS.md](docs/GIT_HOOKS.md)
+
 ## 🎨 Frontend-Technologien
 
 - **Next.js 14** - React Framework mit App Router
