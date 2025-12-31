@@ -1,29 +1,24 @@
 package de.dgtlschmd.n8n.auth;
 
-import de.dgtlschmd.n8n.dto.LoginRequestDto;
-import de.dgtlschmd.n8n.dto.LoginResponseDto;
-import de.dgtlschmd.n8n.dto.RegisterRequestDto;
-import de.dgtlschmd.n8n.dto.PasswordResetRequestDto;
-import de.dgtlschmd.n8n.dto.PasswordResetDto;
+import de.dgtlschmd.n8n.dto.*;
 import de.dgtlschmd.n8n.passwordreset.PasswordResetService;
+import de.dgtlschmd.n8n.security.CryptoService;
 import de.dgtlschmd.n8n.security.CustomUserDetailsService;
 import de.dgtlschmd.n8n.security.JwtUtil;
-import de.dgtlschmd.n8n.security.CryptoService;
 import de.dgtlschmd.n8n.security.UserKeyCache;
 import de.dgtlschmd.n8n.user.User;
 import de.dgtlschmd.n8n.user.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 
 import javax.crypto.SecretKey;
 import java.util.UUID;
@@ -35,9 +30,8 @@ import java.util.UUID;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 @ConditionalOnMissingBean(AuthController.class)
+@Slf4j
 public class AuthController {
-
-    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
