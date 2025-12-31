@@ -3,6 +3,9 @@ package de.dgtlschmd.n8n.auth;
 import de.dgtlschmd.n8n.dto.LoginRequestDto;
 import de.dgtlschmd.n8n.dto.LoginResponseDto;
 import de.dgtlschmd.n8n.dto.RegisterRequestDto;
+import de.dgtlschmd.n8n.dto.PasswordResetRequestDto;
+import de.dgtlschmd.n8n.dto.PasswordResetDto;
+import de.dgtlschmd.n8n.passwordreset.PasswordResetService;
 import de.dgtlschmd.n8n.security.CustomUserDetailsService;
 import de.dgtlschmd.n8n.security.JwtUtil;
 import de.dgtlschmd.n8n.security.CryptoService;
@@ -43,6 +46,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final CryptoService cryptoService;
     private final UserKeyCache userKeyCache;
+    private final PasswordResetService passwordResetService;
 
     public AuthController(
             AuthenticationManager authenticationManager,
@@ -51,7 +55,8 @@ public class AuthController {
             UserRepository userRepository,
             PasswordEncoder passwordEncoder,
             CryptoService cryptoService,
-            UserKeyCache userKeyCache) {
+            UserKeyCache userKeyCache,
+            PasswordResetService passwordResetService) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
@@ -59,6 +64,7 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
         this.cryptoService = cryptoService;
         this.userKeyCache = userKeyCache;
+        this.passwordResetService = passwordResetService;
     }
 
     /**
@@ -176,6 +182,54 @@ public class AuthController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Nicht authentifiziert");
+        }
+    }
+
+    /**
+     * POST /api/auth/request-password-reset
+     * Fordert einen Password-Reset an (sendet E-Mail)
+     */
+    @PostMapping("/request-password-reset")
+    public ResponseEntity<?> requestPasswordReset(@RequestBody PasswordResetRequestDto request) {
+        log.info("Password reset requested for email: {}", request.getEmail());
+
+        // Service-Methode gibt immer erfolgreich zurück (Timing-Attack-Schutz)
+        passwordResetService.requestPasswordReset(request.getEmail());
+
+        return ResponseEntity.ok("Falls die E-Mail-Adresse in unserem System existiert, wurde eine E-Mail zum Zurücksetzen des Passworts gesendet.");
+    }
+
+    /**
+     * POST /api/auth/reset-password
+     * Setzt das Passwort mit einem Token zurück
+     */
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody PasswordResetDto request) {
+        try {
+            passwordResetService.resetPassword(request.getToken(), request.getNewPassword());
+            log.info("Password reset successful for token");
+            return ResponseEntity.ok("Passwort erfolgreich zurückgesetzt");
+        } catch (IllegalArgumentException e) {
+            log.warn("Password reset failed: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            log.error("Password reset failed", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Fehler beim Zurücksetzen des Passworts");
+        }
+    }
+
+    /**
+     * GET /api/auth/validate-reset-token?token=xxx
+     * Validiert einen Password-Reset-Token
+     */
+    @GetMapping("/validate-reset-token")
+    public ResponseEntity<?> validateResetToken(@RequestParam String token) {
+        boolean isValid = passwordResetService.isTokenValid(token);
+        if (isValid) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token ist ungültig oder abgelaufen");
         }
     }
 }

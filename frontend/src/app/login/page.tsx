@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { useLicense } from '@/lib/license/LicenseContext';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Skeleton } from '@/components/Skeleton';
 
 export default function LoginPage() {
@@ -79,9 +80,17 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-zinc-300">
-                Passwort
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-zinc-300">
+                  Passwort
+                </label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 transition-colors"
+                >
+                  Passwort vergessen?
+                </Link>
+              </div>
               <input
                 id="password"
                 name="password"
