@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>de.dgtlschmd.nim.ce</groupId>
-        <artifactId>nim-monorepo-root</artifactId>
+        <groupId>de.dgtlschmd.controla.ce</groupId>
+        <artifactId>controla-monorepo-root</artifactId>
         <version>1.0.4</version>
     </parent>
 
     <artifactId>backend</artifactId>
-    <name>n8n Instance Manager Backend Service</name>
+    <name>controla Backend Service</name>
 
     <dependencies>
         <dependency>
@@ -95,7 +95,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/munichdeveloper/n8n-instance-manager</url>
+            <url>https://maven.pkg.github.com/munichdeveloper/controla</url>
         </repository>
     </distributionManagement>
 

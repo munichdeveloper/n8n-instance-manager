@@ -35,7 +35,7 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (license?.edition) {
-      document.title = `n8n Instance Manager - ${license.edition}`;
+      document.title = `Controla - ${license.edition}`;
     }
   }, [license]);
 

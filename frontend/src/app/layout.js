@@ -45,7 +45,7 @@ function Navigation() {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
-              n8n Instance Manager
+              Controla
               {isPremium ? (
                 <span className="text-sm font-bold ml-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">
                   Business Edition
@@ -154,7 +154,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de" className="h-full" suppressHydrationWarning>
       <head>
-        <title>n8n Instance Manager - Community Edition</title>
+        <title>Controla - Community Edition</title>
         <script
           dangerouslySetInnerHTML={{
             __html: `

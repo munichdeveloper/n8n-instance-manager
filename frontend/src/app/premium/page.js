@@ -18,7 +18,7 @@ export default function PremiumPage() {
           Wähle den passenden Plan
         </h1>
         <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-          <a href="https://github.com/munichdeveloper/n8n-instance-manager" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline">Starte kostenlos</a> und skaliere mit unseren Business-Funktionen für professionelles Instanz-Management.
+          <a href="https://github.com/munichdeveloper/controla" target="_blank" rel="noopener noreferrer" className="text-emerald-600 dark:text-emerald-400 hover:underline">Starte kostenlos</a> und skaliere mit unseren Business-Funktionen für professionelles Instanz-Management.
         </p>
       </div>
 
@@ -39,7 +39,7 @@ export default function PremiumPage() {
             </p>
           </div>
           <a
-            href="https://github.com/munichdeveloper/n8n-instance-manager"
+            href="https://github.com/munichdeveloper/controla"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 block rounded-full py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
@@ -98,7 +98,7 @@ export default function PremiumPage() {
               </p>
             </div>
             <a
-              href="https://n8n-instance-manager.de/signup"
+              href="https://controla.de/signup"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 block w-full rounded-full bg-emerald-500/10 py-2 px-3 text-center text-sm font-semibold leading-6 text-emerald-400 shadow-sm hover:bg-emerald-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 transition-colors"

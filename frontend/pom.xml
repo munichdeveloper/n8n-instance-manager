@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>de.dgtlschmd.nim.ce</groupId>
-        <artifactId>nim-monorepo-root</artifactId>
+        <groupId>de.dgtlschmd.controla.ce</groupId>
+        <artifactId>controla-monorepo-root</artifactId>
         <version>1.0.4</version>
     </parent>
 
     <artifactId>frontend</artifactId>
-    <name>n8n Instance Manager Frontend Service</name>
+    <name>controla Frontend Service</name>
 
     <build>
         <plugins>

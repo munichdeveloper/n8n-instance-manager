@@ -4,25 +4,25 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:16-alpine
-    container_name: n8n-manager-postgres
+    container_name: controla-postgres
     restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: n8n_manager
-      POSTGRES_USER: n8n_user
-      POSTGRES_PASSWORD: n8n_secure_password
+      POSTGRES_DB: controla
+      POSTGRES_USER: controla_user
+      POSTGRES_PASSWORD: controla_secure_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U n8n_user -d n8n_manager"]
+      test: ["CMD-SHELL", "pg_isready -U controla_user -d controla"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - n8n-network
+      - controla-network
 
-  # n8n Instance Manager Backend
+  # controla Backend
   backend:
     build:
       context: .
@@ -34,9 +34,9 @@ services:
       - CORE_BASE_URL=http://host.docker.internal:8081
       - CORE_API_TOKEN=dev-apikey-123
       - CORE_TENANT_ID=123e4567-e89b-12d3-a456-426614174000
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/n8n_manager
-      - SPRING_DATASOURCE_USERNAME=n8n_user
-      - SPRING_DATASOURCE_PASSWORD=n8n_secure_password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/controla
+      - SPRING_DATASOURCE_USERNAME=controla_user
+      - SPRING_DATASOURCE_PASSWORD=controla_secure_password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       postgres:
@@ -44,9 +44,9 @@ services:
       core:
         condition: service_started
     networks:
-      - n8n-network
+      - controla-network
 
-  # n8n Instance Manager Frontend
+  # controla Frontend
   frontend:
     build:
       context: .
@@ -59,7 +59,7 @@ services:
     depends_on:
       - backend
     networks:
-      - n8n-network
+      - controla-network
 
   # Optional: Agency Core Service
   # Fügen Sie hier Ihre Core Service Konfiguration hinzu
@@ -72,10 +72,10 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     networks:
-      - n8n-network
+      - controla-network
 
 networks:
-  n8n-network:
+  controla-network:
     driver: bridge
 
 volumes:

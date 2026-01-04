@@ -1,4 +1,4 @@
-# n8n Instance Manager - Community Edition
+# controla - Community Edition
 
 Ein Monorepo-Projekt zur Überwachung von bis zu 3 n8n-Instanzen (Community Edition).
 
@@ -82,7 +82,7 @@ npm run dev
 ```
 
 **H2 Console:** http://localhost:8080/h2-console  
-**JDBC URL:** `jdbc:h2:file:./data/n8n-manager-dev`
+**JDBC URL:** `jdbc:h2:file:./data/controla-dev`
 
 ### 4. Frontend starten (Entwicklung)
 
@@ -99,7 +99,7 @@ Frontend läuft auf: http://localhost:3000
 ### Docker Build
 
 ```bash
-docker build -t n8n-instance-manager .
+docker build -t controla .
 ```
 
 ### Docker Run
@@ -108,16 +108,16 @@ docker build -t n8n-instance-manager .
 docker run -p 8080:8080 -p 3000:3000 \
   -e CORE_BASE_URL=https://core-api.example.com \
   -e CORE_API_TOKEN=your-token \
-  n8n-instance-manager
+  controla
 ```
 
 ## 📁 Projektstruktur
 
 ```
-n8n-instance-manager/
+controla/
 ├── backend/                    # Spring Boot Backend
 │   ├── src/main/java/
-│   │   └── de/dgtlschmd/n8n/
+│   │   └── de/dgtlschmd/controla/
 │   │       ├── alerts/         # Alert Settings
 │   │       ├── config/         # Configuration
 │   │       ├── dto/            # Data Transfer Objects
@@ -170,20 +170,20 @@ n8n-instance-manager/
 docker-compose -f docker-compose.postgres.yml up -d
 
 # Verbinden mit psql
-docker exec -it n8n-manager-postgres psql -U n8n_user -d n8n_manager
+docker exec -it controla-postgres psql -U controla_user -d controla
 
 # Backup erstellen
-docker exec n8n-manager-postgres pg_dump -U n8n_user n8n_manager > backup.sql
+docker exec controla-postgres pg_dump -U controla_user controla > backup.sql
 
 # Backup wiederherstellen
-docker exec -i n8n-manager-postgres psql -U n8n_user -d n8n_manager < backup.sql
+docker exec -i controla-postgres psql -U controla_user -d controla < backup.sql
 ```
 
 **Credentials:**
 - Host: `localhost:5432`
-- Database: `n8n_manager`
-- User: `n8n_user`
-- Password: `n8n_secure_password`
+- Database: `controla`
+- User: `controla_user`
+- Password: `controla_secure_password`
 
 ### H2 (Dev - Lokale Entwicklung)
 
@@ -193,7 +193,7 @@ mvn spring-boot:run -Dspring.profiles.active=dev
 ```
 
 **H2 Console:** http://localhost:8080/h2-console  
-**JDBC URL:** `jdbc:h2:file:./data/n8n-manager-dev`  
+**JDBC URL:** `jdbc:h2:file:./data/controla-dev`  
 **User:** `sa` / **Password:** `password`
 
 Daten werden in `./data/` gespeichert und bleiben erhalten.
@@ -300,7 +300,7 @@ Weitere Dokumentation finden Sie im [`docs/`](./docs) Ordner:
 
 ## 📝 Lizenz
 
-Dieses Projekt ist Teil des n8n Instance Manager Systems.
+Dieses Projekt ist Teil des controla Systems.
 
 ## 🤝 Support
 
