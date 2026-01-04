@@ -6,11 +6,11 @@
     <parent>
         <groupId>de.dgtlschmd.controla.ce</groupId>
         <artifactId>controla-monorepo-root</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <artifactId>frontend</artifactId>
-    <name>controla Frontend Service</name>
+    <name>Controla Frontend Service</name>
 
     <build>
         <plugins>

@@ -6,11 +6,11 @@
     <parent>
         <groupId>de.dgtlschmd.controla.ce</groupId>
         <artifactId>controla-monorepo-root</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <artifactId>backend</artifactId>
-    <name>controla Backend Service</name>
+    <name>Controla Backend Service</name>
 
     <dependencies>
         <dependency>
@@ -95,7 +95,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/munichdeveloper/controla</url>
+            <url>https://maven.pkg.github.com/munichdeveloper/n8n-instance-manager</url>
         </repository>
     </distributionManagement>
 
