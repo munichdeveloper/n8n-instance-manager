@@ -117,7 +117,7 @@ docker run -p 8080:8080 -p 3000:3000 \
 controla/
 ├── backend/                    # Spring Boot Backend
 │   ├── src/main/java/
-│   │   └── de/dgtlschmd/controla/
+│   │   └── de/atstck/controla/
 │   │       ├── alerts/         # Alert Settings
 │   │       ├── config/         # Configuration
 │   │       ├── dto/            # Data Transfer Objects
