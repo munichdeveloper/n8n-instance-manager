@@ -1,4 +1,4 @@
-# controla - Community Edition
+# Controla - Community Edition
 
 Ein Monorepo-Projekt zur Überwachung von bis zu 3 n8n-Instanzen (Community Edition).
 
