@@ -44,7 +44,7 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
     return !!license.features[feature];
   };
 
-  const isPremium = license?.edition === 'Business Edition' || license?.edition === 'Premium Edition';
+  const isPremium = license?.edition === 'Hosted Ops' || license?.edition === 'Premium Edition';
   const maxInstances = license?.maxInstances ?? 3;
 
   return (

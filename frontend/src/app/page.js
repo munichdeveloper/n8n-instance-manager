@@ -377,7 +377,7 @@ export default function Dashboard() {
           <p className="text-gray-600 dark:text-zinc-400 mt-2">
             {isPremium ? (
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">
-                Business Edition
+                Hosted Ops
               </span>
             ) : (
               license?.edition || 'Community Edition'

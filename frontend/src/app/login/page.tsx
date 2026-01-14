@@ -43,7 +43,7 @@ export default function LoginPage() {
               <Skeleton className="h-5 w-32" />
             ) : isPremium ? (
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">
-                Business Edition
+                Hosted Ops
               </span>
             ) : (
               license?.edition || 'Community Edition'

@@ -48,7 +48,7 @@ function Navigation() {
               Controla
               {isPremium ? (
                 <span className="text-sm font-bold ml-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">
-                  Business Edition
+                  Hosted Ops
                 </span>
               ) : (
                 <span className="text-sm text-gray-500 dark:text-zinc-500 font-normal ml-2">

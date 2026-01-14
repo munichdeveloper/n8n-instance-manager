@@ -85,7 +85,7 @@ export default function PremiumPage() {
 
           <div className="relative">
             <div className="min-h-[220px]">
-              <h3 className="text-lg font-semibold leading-8 text-emerald-400">Business Edition</h3>
+              <h3 className="text-lg font-semibold leading-8 text-emerald-400">Hosted Ops</h3>
               <p className="mt-4 text-sm leading-6 text-zinc-400">
                 Für Power-User und Agenturen, die mehr Kontrolle benötigen.
               </p>
