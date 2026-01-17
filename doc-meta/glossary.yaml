@@ -1,0 +1,42 @@
+# Controla Glossary
+
+terms:
+  - term: Agency Core API
+    definition: External REST API that provides n8n instance data, workflows, and events
+    aliases: [Core API, CORE]
+
+  - term: Instance
+    definition: A monitored n8n installation with unique API credentials
+    context: Community edition supports up to 3 instances
+
+  - term: Tenant
+    definition: Isolated data context for a user or organization
+    context: Multi-tenant architecture ensures data separation
+
+  - term: JWT Token
+    definition: JSON Web Token used for stateless authentication
+
+  - term: Alert Settings
+    definition: User-configurable notification preferences for instance errors
+
+  - term: NEXT_PUBLIC_BACKEND_BASE_URL
+    definition: Environment variable for Frontend to Backend communication
+    context: |
+      Required for client-side (browser) API calls. 
+      Format: http://hostname:8081/api
+      Not needed for server-side Next.js API calls (uses rewrites or BACKEND_URL)
+
+  - term: BACKEND_URL
+    definition: Environment variable for server-side Next.js to Backend communication
+    context: |
+      Used by Next.js server for internal API calls and rewrites.
+      Format: http://localhost:8081/api (within same container)
+
+  - term: Standalone Build
+    definition: Next.js production build mode that creates a self-contained deployment
+    context: Required for Docker deployment without full node_modules
+
+  - term: Rewrites
+    definition: Next.js feature to proxy API requests from /api/* to backend
+    context: Only works in development mode, not in standalone production builds
+

@@ -1,0 +1,58 @@
+# Controla System Definition
+name: Controla
+version: 1.0.6
+description: n8n Instance Monitoring System with multi-tenant support
+
+architecture:
+  style: Monolithic with containerized deployment
+  components:
+    - name: Backend
+      technology: Spring Boot 3.2.4 (Java 17)
+      port: 8081
+      responsibilities:
+        - API Gateway to Agency Core
+        - Authentication & Authorization (JWT)
+        - Multi-tenancy management
+        - Alert settings management
+
+    - name: Frontend
+      technology: Next.js 14 (TypeScript)
+      port: 3000
+      responsibilities:
+        - User interface
+        - Client-side routing
+        - Server-side API proxy via rewrites
+
+    - name: Database
+      technology: PostgreSQL 16
+      port: 5432
+      responsibilities:
+        - User data persistence
+        - Instance metadata
+        - Alert settings
+        - Multi-tenant data isolation
+
+    - name: Agency Core API
+      technology: External API
+      port: 8081
+      responsibilities:
+        - n8n instance data source
+        - Workflow management
+        - Event/Error tracking
+
+deployment:
+  container_architecture: Single container with multiple processes
+  strategy: Docker Compose
+  notes: |
+    Backend and Frontend run in the same container for simplified deployment.
+    Both services are started via a shell script that manages their lifecycle.
+
+  exposed_ports:
+    - 3000  # Frontend (Next.js)
+    - 8081  # Backend (Spring Boot)
+
+  network_configuration: |
+    - Frontend communicates with Backend via localhost:8081 (server-side)
+    - Browser communicates with Backend via exposed port 8081 (client-side)
+    - NEXT_PUBLIC_BACKEND_BASE_URL must be set for browser-to-backend communication
+
