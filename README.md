@@ -1,81 +1,56 @@
 # Controla - Community Edition
 
-Ein Monorepo-Projekt zur Überwachung von bis zu 3 n8n-Instanzen (Community Edition).
+A monorepo project for monitoring up to 3 n8n instances (Community Edition).
 
-## 🏗️ Architektur
+## License
+Controla Community Edition is licensed under the GNU Affero General Public License v3.0 (AGPLv3).
+See the LICENSE file for details.
 
-- **Backend:** Spring Boot (Java 17) - API-Fassade zu Agency Core
-- **Frontend:** Next.js 14 mit TypeScript, Tailwind CSS und TanStack Query
-- **Database:** PostgreSQL 16 (Standard) oder H2 (Dev)
-- **Authentication:** JWT-basiert mit Spring Security
-- **Build-System:** Maven (Monorepo mit Root-POM)
+## 🏗️ Architecture
+
+- **Backend:** Spring Boot (Java 17)
+- **Frontend:** Next.js 14 with TypeScript, Tailwind CSS and TanStack Query
+- **Database:** PostgreSQL 16 (Default) or H2 (Dev)
+- **Authentication:** JWT-based with Spring Security
+- **Build System:** Maven (Monorepo with Root POM)
 - **Deployment:** Docker Compose
-- **Core API:** Agency Core API (Port 8081) mit Swagger/OpenAPI Dokumentation
 
 ## 📋 Features
 
 ### Community Edition
-- ✅ Übersicht über bis zu 3 n8n-Instanzen
-- ✅ Status-Monitoring (online/offline)
-- ✅ Workflow-Übersicht (read-only)
-- ✅ Fehlerübersicht (WORKFLOW_ERROR Events)
-- ✅ E-Mail-Alert-Einstellungen
-- ✅ Performance-Metriken (Basis)
+- ✅ Overview of up to 3 n8n instances
+- ✅ Status monitoring (online/offline)
+- ✅ Workflow overview (read-only)
+- ✅ Error overview (WORKFLOW_ERROR Events)
+- ✅ E-Mail alert settings
+- ✅ Performance metrics (Basic)
 
-## 🚀 Schnellstart
+## 🚀 Quick Start
 
-### Voraussetzungen
+### Prerequisites
 - Java 17+
 - Maven 3.9+
-- Docker & Docker Compose (für PostgreSQL)
-- Node.js 20+ (optional, wird automatisch installiert)
-
-### Option 1: Automatisches Setup (Empfohlen)
-
-```powershell
-# Windows PowerShell
-.\setup-postgres.ps1
-```
-
-Das Script:
-1. Startet PostgreSQL in Docker
-2. Kompiliert Backend
-3. Installiert Frontend Dependencies
-
-Dann manuell starten:
-```bash
-# Terminal 1: Backend
-cd backend
-mvn spring-boot:run
-
-# Terminal 2: Frontend
-cd frontend
-npm run dev
-```
-
-**Login:** `admin` / `admin123`  
-**URL:** http://localhost:3000
-
-### Option 2: Alles in Docker
+- Docker & Docker Compose (for PostgreSQL)
+- Node.js 20+ (optional, will be installed automatically)
 
 ```bash
 # Alle Services starten (PostgreSQL + Backend + Frontend)
 docker-compose up -d
 
-# Logs anschauen
+# View logs
 docker-compose logs -f
 ```
 
 **URL:** http://localhost:3000
 
-### Option 3: Lokale Entwicklung (ohne PostgreSQL)
+### Option 3: Local Development (without PostgreSQL)
 
 ```bash
-# Backend mit H2-Datenbank starten
+# Start backend with H2 database
 cd backend
 mvn spring-boot:run -Dspring.profiles.active=dev
 
-# Frontend starten
+# Start frontend
 cd frontend
 npm install
 npm run dev
@@ -84,7 +59,7 @@ npm run dev
 **H2 Console:** http://localhost:8080/h2-console  
 **JDBC URL:** `jdbc:h2:file:./data/controla-dev`
 
-### 4. Frontend starten (Entwicklung)
+### 4. Start Frontend (Development)
 
 ```bash
 cd frontend
@@ -92,7 +67,7 @@ npm install
 npm run dev
 ```
 
-Frontend läuft auf: http://localhost:3000
+Frontend runs on: http://localhost:3000
 
 ## 🐳 Docker
 
@@ -111,7 +86,7 @@ docker run -p 8080:8080 -p 3000:3000 \
   controla
 ```
 
-## 📁 Projektstruktur
+## 📁 Project Structure
 
 ```
 controla/
@@ -127,8 +102,8 @@ controla/
 ├── frontend/                   # Next.js Frontend
 │   ├── src/
 │   │   ├── app/               # Next.js App Router
-│   │   │   ├── instances/[id]/ # Instanz-Detail
-│   │   │   └── settings/alerts/ # Alert-Einstellungen
+│   │   │   ├── instances/[id]/ # Instance Detail
+│   │   │   └── settings/alerts/ # Alert Settings
 │   │   └── lib/
 │   │       ├── api/           # API Client
 │   │       ├── types/         # TypeScript Types
@@ -138,44 +113,44 @@ controla/
 └── pom.xml                    # Root POM (Monorepo)
 ```
 
-## 🔌 API-Endpunkte
+## 🔌 API Endpoints
 
 ### Authentication
 - `POST /api/auth/login` - Login (JWT Token)
-- `POST /api/auth/register` - Registrierung
-- `GET /api/auth/me` - Aktueller User
+- `POST /api/auth/register` - Registration
+- `GET /api/auth/me` - Current User
 
-### Instanzen (🔒 Authentifizierung erforderlich)
-- `GET /api/instances` - Liste aller Instanzen
-- `POST /api/instances` - Neue Instanz erstellen (max. 3)
-- `GET /api/instances/{id}` - Instanz-Details
-- `GET /api/instances/{id}/workflows` - Workflows einer Instanz
-- `GET /api/instances/{id}/events` - Events/Fehler einer Instanz
-- `GET /api/instances/{id}/metrics` - Metriken einer Instanz
+### Instances (🔒 Authentication required)
+- `GET /api/instances` - List of all instances
+- `POST /api/instances` - Create new instance (max. 3)
+- `GET /api/instances/{id}` - Instance details
+- `GET /api/instances/{id}/workflows` - Workflows of an instance
+- `GET /api/instances/{id}/events` - Events/Errors of an instance
+- `GET /api/instances/{id}/metrics` - Metrics of an instance
 
-### Alert Settings (🔒 Authentifizierung erforderlich)
-- `GET /api/alerts/settings` - Alert-Einstellungen abrufen
-- `PUT /api/alerts/settings` - Alert-Einstellungen speichern
-- `PUT /api/alerts/settings` - Alert-Einstellungen aktualisieren
+### Alert Settings (🔒 Authentication required)
+- `GET /api/alerts/settings` - Get alert settings
+- `PUT /api/alerts/settings` - Save alert settings
+- `PUT /api/alerts/settings` - Update alert settings
 
 ### Health
 - `GET /actuator/health` - Backend Health Check
 
-## 💾 Datenbank
+## 💾 Database
 
-### PostgreSQL (Standard - Produktion)
+### PostgreSQL (Default - Production)
 
 ```bash
-# Nur PostgreSQL starten
+# Start PostgreSQL only
 docker-compose -f docker-compose.postgres.yml up -d
 
-# Verbinden mit psql
+# Connect with psql
 docker exec -it controla-postgres psql -U controla_user -d controla
 
-# Backup erstellen
+# Create backup
 docker exec controla-postgres pg_dump -U controla_user controla > backup.sql
 
-# Backup wiederherstellen
+# Restore backup
 docker exec -i controla-postgres psql -U controla_user -d controla < backup.sql
 ```
 
@@ -185,10 +160,10 @@ docker exec -i controla-postgres psql -U controla_user -d controla < backup.sql
 - User: `controla_user`
 - Password: `controla_secure_password`
 
-### H2 (Dev - Lokale Entwicklung)
+### H2 (Dev - Local Development)
 
 ```bash
-# Backend mit Dev-Profil starten
+# Start backend with Dev profile
 mvn spring-boot:run -Dspring.profiles.active=dev
 ```
 
@@ -196,11 +171,11 @@ mvn spring-boot:run -Dspring.profiles.active=dev
 **JDBC URL:** `jdbc:h2:file:./data/controla-dev`  
 **User:** `sa` / **Password:** `password`
 
-Daten werden in `./data/` gespeichert und bleiben erhalten.
+Data is stored in `./data/` and persists.
 
-📖 **Detaillierte PostgreSQL-Dokumentation:** [docs/POSTGRESQL_SETUP.md](docs/POSTGRESQL_SETUP.md)
+📖 **Detailed PostgreSQL Documentation:** [docs/POSTGRESQL_SETUP.md](docs/POSTGRESQL_SETUP.md)
 
-## 🛠️ Entwicklung
+## 🛠️ Development
 
 ### Backend
 ```bash
@@ -214,22 +189,22 @@ cd frontend
 npm run dev
 ```
 
-### Tests ausführen
+### Run tests
 ```bash
 mvn test
 ```
 
 ### 🔒 Git Pre-Push Hook
 
-Das Projekt enthält einen **automatischen Pre-Push Hook**, der Tests vor jedem Push ausführt:
+The project contains an **automatic Pre-Push Hook** that runs tests before every push:
 
-- ✅ **Automatische Validierung**: Tests werden vor jedem `git push` ausgeführt
-- ✅ **Push-Schutz**: Push wird nur bei erfolgreichen Tests zugelassen
-- ✅ **Bereits installiert**: Hook ist unter `.git/hooks/pre-push` aktiv
+- ✅ **Automatic Validation**: Tests are run before every `git push`
+- ✅ **Push Protection**: Push is only allowed on successful tests
+- ✅ **Already Installed**: Hook is active at `.git/hooks/pre-push`
 
-**Hook testen:**
+**Test hook:**
 ```bash
-# Windows PowerShell (Empfohlen)
+# Windows PowerShell (Recommended)
 .\test-pre-push-hook.ps1
 
 # Windows CMD
@@ -239,70 +214,70 @@ test-pre-push-hook.bat
 ./test-pre-push-hook.sh
 ```
 
-**Hook temporär überspringen** (nur in Notfällen):
+**Skip hook temporarily** (only in emergencies):
 ```bash
 git push --no-verify
 ```
 
-📖 **Detaillierte Hook-Dokumentation:** [GIT_HOOKS.md](docs/GIT_HOOKS.md)
+📖 **Detailed Hook Documentation:** [GIT_HOOKS.md](docs/GIT_HOOKS.md)
 
-## 🎨 Frontend-Technologien
+## 🎨 Frontend Technologies
 
-- **Next.js 14** - React Framework mit App Router
+- **Next.js 14** - React Framework with App Router
 - **TypeScript** - Type Safety
 - **Tailwind CSS** - Utility-First CSS
 - **TanStack Query** - Server State Management
-- **date-fns** - Datum-Formatierung
+- **date-fns** - Date Formatting
 
 ## 📦 Maven Build
 
-Das Projekt nutzt ein Maven Monorepo:
+The project uses a Maven Monorepo:
 
 ```bash
-# Alles bauen
+# Build everything
 mvn clean package
 
 # Backend JAR: backend/target/backend-1.0.0-SNAPSHOT.jar
 # Frontend Build: frontend/.next/
 ```
 
-## 🔐 Umgebungsvariablen
+## 🔐 Environment Variables
 
 ### Backend
-- `CORE_BASE_URL` - URL der Agency Core API (Standard: http://localhost:8081)
-- `CORE_API_TOKEN` - API Key für Core (Standard: dev-apikey-123)
-- `CORE_TENANT_ID` - Tenant-ID für Multi-Tenancy (Standard: 123e4567-e89b-12d3-a456-426614174000)
-- `SERVER_PORT` - Port des Backends (Standard: 8080)
+- `CORE_BASE_URL` - URL of the Agency Core API (Default: http://localhost:8081)
+- `CORE_API_TOKEN` - API Key for Core (Default: dev-apikey-123)
+- `CORE_TENANT_ID` - Tenant ID for Multi-Tenancy (Default: 123e4567-e89b-12d3-a456-426614174000)
+- `SERVER_PORT` - Backend Port (Default: 8080)
 
 ### Frontend
-- `NEXT_PUBLIC_BACKEND_BASE_URL` - Backend URL (Standard: /api via Proxy)
+- `NEXT_PUBLIC_BACKEND_BASE_URL` - Backend URL (Default: /api via Proxy)
 
-## 📈 Erweiterbarkeit
+## 📈 Extensibility
 
-Das Projekt ist so konzipiert, dass es einfach zur Pro-Version erweitert werden kann:
+The project is designed to be easily extended to the Pro version:
 
-- ✨ Mehr als 3 Instanzen
-- ✨ Team-Features
-- ✨ Erweiterte Analytics
-- ✨ Credentials-Monitoring
-- ✨ Slack/Telegram Alerts
-- ✨ Custom Dashboards
+- ✨ More than 3 instances
+- ✨ Team features
+- ✨ Advanced analytics
+- ✨ Credentials monitoring
+- ✨ Slack/Telegram alerts
+- ✨ Custom dashboards
 
-## 📚 Dokumentation
+## 📚 Documentation
 
-Weitere Dokumentation finden Sie im [`docs/`](./docs) Ordner:
+Further documentation can be found in the [`docs/`](./docs) folder:
 
-- **[Quick Start Guide](./docs/QUICKSTART.md)** - Schnellstart in 3 Schritten
-- **[Agency Core Integration](./docs/AGENCY_CORE_INTEGRATION.md)** - Integration mit Agency Core API
-- **[Setup Complete](./docs/SETUP_COMPLETE.md)** - Vollständige Setup-Dokumentation
-- **[Build Status](./docs/BUILD_STATUS.md)** - Build-Metriken und Status
-- **[Status](./docs/STATUS.md)** - Original Projekt-Status
+- **[Quick Start Guide](./docs/QUICKSTART.md)** - Quick start in 3 steps
+- **[Agency Core Integration](./docs/AGENCY_CORE_INTEGRATION.md)** - Integration with Agency Core API
+- **[Setup Complete](./docs/SETUP_COMPLETE.md)** - Complete setup documentation
+- **[Build Status](./docs/BUILD_STATUS.md)** - Build metrics and status
+- **[Status](./docs/STATUS.md)** - Original project status
 
-## 📝 Lizenz
+## 📝 License
 
-Dieses Projekt ist Teil des controla Systems.
+This project is part of the controla system.
 
 ## 🤝 Support
 
-Für Fragen und Support kontaktieren Sie das Entwicklungsteam.
+For questions and support, contact the development team.
 
